@@ -7,15 +7,19 @@
  */
 public class NumberDisplay
 {
-    // instance variables - replace the example below with your own
+    // limite del display
+    private int limit;
+    private int display;
     
 
     /**
      * Constructor for objects of class NumberDisplay
      */
-    public NumberDisplay()
+    
+    public NumberDisplay(int newLimit )
     {
-        
+        display = 0;
+        limit = newLimit;
     }
 
    
