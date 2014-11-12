@@ -9,7 +9,8 @@ public class NumberDisplay
 {
     // limite del display
     private int limit;
-    private int display;
+    //valor del display
+    private int valueDisplay;
     
 
     /**
@@ -20,24 +21,43 @@ public class NumberDisplay
     
     public NumberDisplay(int newLimit )
     {
-        display = 0;
+        valueDisplay = 0;
         limit = newLimit;
     }
     
     /**
-     * fija valor actual del siplay
+     * fija valor actual del siplay pasado por parametro
      */
     public void setValue(int value)
     {
         if (value <= limit)
         {
-            display = value;
+            valueDisplay = value;
         }
         else
         {
             System.out.println("dato incorrecto introduce un numero entre 0-"+limit);
         }
     }
+    
+   /**
+    * metodo devuelve el valor actual del display en dos digitos
+    */
+   public String getDisplayValue()
+   {
+        String curentValue;
+        
+        if (valueDisplay < 10)
+        {
+            curentValue = "0" + valueDisplay;
+        }
+        else
+        {
+            curentValue = "" + valueDisplay;
+        }
+        return curentValue;
+   }
 
-   
 }
+  
+
