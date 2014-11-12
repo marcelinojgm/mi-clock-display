@@ -14,12 +14,29 @@ public class NumberDisplay
 
     /**
      * Constructor for objects of class NumberDisplay
+     * select limit of display
+     * fija valor display a 0
      */
     
     public NumberDisplay(int newLimit )
     {
         display = 0;
         limit = newLimit;
+    }
+    
+    /**
+     * fija valor actual del siplay
+     */
+    public void setValue(int value)
+    {
+        if (value <= limit)
+        {
+            display = value;
+        }
+        else
+        {
+            System.out.println("dato incorrecto introduce un numero entre 0-"+limit);
+        }
     }
 
    
