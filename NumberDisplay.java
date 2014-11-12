@@ -30,7 +30,7 @@ public class NumberDisplay
      */
     public void setValue(int value)
     {
-        if (value <= limit)
+        if (value < limit)
         {
             valueDisplay = value;
         }
@@ -63,6 +63,17 @@ public class NumberDisplay
     public int getValue()
     {
         return valueDisplay;
+    }
+    /**
+     * metodo que suma 1 al display si llega al limite lo pone a 0
+     */
+    public void increment()
+    {
+         valueDisplay = valueDisplay + 1;
+         if(valueDisplay == limit)
+        {
+            valueDisplay = 0;
+        }        
     }
 }
   
