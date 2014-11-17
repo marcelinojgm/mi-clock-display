@@ -44,5 +44,14 @@ public class ClockDisplay
     {
       hour.setValue(newHour);
       minute.setValue(newMinute);
+      courentValue = hour.getDisplayValue()+":"+minute.getDisplayValue();
+    }
+    
+     /**
+     * devuelve en string hora actual en 5 caracteres
+     */
+    public String getTime()
+    {
+        return courentValue;
     }
 }
