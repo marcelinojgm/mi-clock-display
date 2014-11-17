@@ -54,4 +54,16 @@ public class ClockDisplay
     {
         return courentValue;
     }
+    /**
+     * adelanta el relojun min
+     */
+    
+    public void timeTick()
+    {
+        minute.increment();
+        if (minute.valueDisplay == 0)
+        {
+            hour.increment();
+        }
+    }
 }
