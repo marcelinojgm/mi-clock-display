@@ -10,7 +10,7 @@ public class NumberDisplay
     // limite del display
     private int limit;
     //valor del display
-    private int valueDisplay;
+    public int valueDisplay;
     
 
     /**
@@ -75,6 +75,7 @@ public class NumberDisplay
             valueDisplay = 0;
         }        
     }
+    
 }
   
 
