@@ -36,4 +36,13 @@ public class ClockDisplay
       minute.setValue(newMinute);
       courentValue = hour.getDisplayValue()+":"+minute.getDisplayValue();
     }
+    /**
+     * fija la hora a los valores introducidos
+     */
+    
+    public void setTime(int newHour, int newMinute)
+    {
+      hour.setValue(newHour);
+      minute.setValue(newMinute);
+    }
 }
