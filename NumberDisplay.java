@@ -9,8 +9,9 @@ public class NumberDisplay
 {
     // limite del display
     private int limit;
+    
     //valor del display
-    public int valueDisplay;
+    private int valueDisplay;
     
 
     /**

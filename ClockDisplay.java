@@ -20,10 +20,9 @@ public class ClockDisplay
      */
     public ClockDisplay()
     {
-      hour      = new NumberDisplay(24);
-      minute    = new NumberDisplay(60);
-      courentValue = hour.getDisplayValue()+":"+minute.getDisplayValue();
-        
+      hour          = new NumberDisplay(24);
+      minute        = new NumberDisplay(60);
+      updateDisplay();       
     }
     /**
      * constructor que fija por parametros la hora
@@ -34,8 +33,9 @@ public class ClockDisplay
       minute    = new NumberDisplay(60);
       hour.setValue(newHour);
       minute.setValue(newMinute);
-      courentValue = hour.getDisplayValue()+":"+minute.getDisplayValue();
+      updateDisplay();
     }
+    
     /**
      * fija la hora a los valores introducidos
      */
@@ -44,7 +44,7 @@ public class ClockDisplay
     {
       hour.setValue(newHour);
       minute.setValue(newMinute);
-      courentValue = hour.getDisplayValue()+":"+minute.getDisplayValue();
+      updateDisplay();
     }
     
      /**
@@ -54,6 +54,7 @@ public class ClockDisplay
     {
         return courentValue;
     }
+    
     /**
      * adelanta el relojun min
      */
@@ -61,9 +62,18 @@ public class ClockDisplay
     public void timeTick()
     {
         minute.increment();
-        if (minute.valueDisplay == 0)
+        if (minute.getValue() == 0)
         {
             hour.increment();
         }
+        updateDisplay();
     }
+    /**
+     * actualizar valor courentValue
+     */
+    private void updateDisplay()
+    {
+        courentValue = hour.getDisplayValue()+ ":" + minute.getDisplayValue();
+    }
+    
 }
