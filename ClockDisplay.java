@@ -59,7 +59,7 @@ public class ClockDisplay
     }
 
     /**
-     * fija la hora a los valores introducidos
+     * fija la hora y fecha en los valores introducidos
      */
 
     public void setTime(int newHour, int newMinute, int newDay, int newMonth, int newYear)
@@ -72,9 +72,35 @@ public class ClockDisplay
        
         updateDisplay();
     }
-
+    
     /**
-     * devuelve en String contenido en contenido en corentValue 
+     * Fija la fecha en los valores introducidos
+     */
+    public void setDate(int newDay, int newMonth, int newYear)
+    {
+        day.setValue(newDay);
+        month.setValue(newMonth);
+        year.setValue(newYear);
+               
+        updateDisplay();
+    }
+    
+     /**
+     * fija la hora en los valores introducidos
+     */
+
+    public void setHour(int newHour, int newMinute)
+    {
+        hour.setValue(newHour);
+        minute.setValue(newMinute);
+               
+        updateDisplay();
+    }
+    
+    
+    
+    /**
+     * devuelve en tring contenido en contenido en corentValue 
      */
     public String getTime()
     {
@@ -99,7 +125,7 @@ public class ClockDisplay
                 year.increment();
             }
         }
-        newDate();
+        updateDisplay();
     }
 
     /**
@@ -121,39 +147,30 @@ public class ClockDisplay
         }
         updateDisplay();
     }
-
+      
     /**
-     * Devuelve String con la fecha en formato dd/mm/aa
-     */ 
-    private String newDate()
-    {
-        String newDate;
-        newDate = day.getDisplayValue() + "/" + month.getDisplayValue() + "/" + year.getDisplayValue();
-        return newDate;
-    }
-
-    
-    /**
-     * actualizar valor courentValue formato hh:mm am dd/mm/aa
+     * Devuelve String con la hora y fecha
      */
     private void updateDisplay()
     {
         int valueHour    = hour.getValue();
         String newMinute = minute.getDisplayValue();
-        String newDate   = newDate();
+        String newHour; 
+        String amPm;
         
+            
         // formato si es por la mañana
         if(valueHour < 12)
         {   
-            String am = "am";
+            amPm = "am";
            
             if (valueHour == 0)
             {
-                courentValue = "12" + ":" + newMinute + " " + am + " " + newDate();
+                newHour = "12";
             }
             else
             {
-                courentValue = hour.getDisplayValue() + ":" + newMinute + " " + am + " " + newDate;
+                newHour = hour.getDisplayValue();
             }
 
         }
@@ -161,24 +178,25 @@ public class ClockDisplay
         //formato si es por la tarde
         else
         {
-            String pm = "pm";
+            amPm = "pm";
             
             if (valueHour == 12)
             {
-                courentValue = valueHour + ":" + newMinute + " " + pm + " " + newDate;
+                newHour = "12";
+            }
+            else if((valueHour - 12) < 10 )
+            {
+                newHour = "0" + (valueHour - 12);
             }
             else
-            { 
-                if((valueHour - 12) < 10 )
-                {
-                    courentValue = "0" + (valueHour - 12) + ":" + newMinute + " " + pm + " " + newDate;
-                }
-                else
-                {
-                    courentValue = (valueHour - 12) + ":"  + newMinute + " " + pm + " " + newDate;
-                }
+            {
+                newHour = "" + (valueHour - 12);
             }
+        
         }
+        
+        // hh:mm am DD/MM/YY
+        courentValue = newHour + ":" + newMinute + " " + amPm + " " + day.getDisplayValue() + "/" + month.getDisplayValue() + "/" + year.getDisplayValue();;
     }
 
 }
