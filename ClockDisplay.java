@@ -30,11 +30,11 @@ public class ClockDisplay
         day    = new NumberDisplay(31);
         month  = new NumberDisplay(13);
         year   = new NumberDisplay(100);
-        
+
         day.setValue(1);
         month.setValue(1);
         year.setValue(0);
-        
+
         updateDisplay();       
     }
 
@@ -54,7 +54,7 @@ public class ClockDisplay
         day.setValue(newDay);
         month.setValue(newMonth);
         year.setValue(newYear);
-       
+
         updateDisplay();
     }
 
@@ -69,10 +69,10 @@ public class ClockDisplay
         day.setValue(newDay);
         month.setValue(newMonth);
         year.setValue(newYear);
-       
+
         updateDisplay();
     }
-    
+
     /**
      * Fija la fecha en los valores introducidos
      */
@@ -81,11 +81,11 @@ public class ClockDisplay
         day.setValue(newDay);
         month.setValue(newMonth);
         year.setValue(newYear);
-               
+
         updateDisplay();
     }
-    
-     /**
+
+    /**
      * fija la hora en los valores introducidos
      */
 
@@ -93,11 +93,10 @@ public class ClockDisplay
     {
         hour.setValue(newHour);
         minute.setValue(newMinute);
-               
+
         updateDisplay();
     }
-    
-    
+
     
     /**
      * devuelve en tring contenido en contenido en corentValue 
@@ -107,47 +106,43 @@ public class ClockDisplay
         return courentValue;
     }
 
-    /**
-     * adelanta la fecha un dia
-     */
-    private void tickDate()
-    {
-        day.increment();
-        
-        if (day.getValue() == 0)
-        {   
-            day.setValue(1);
-            month.increment();
-            
-            if (month.getValue() == 0)
-            {
-                month.setValue(1);
-                year.increment();
-            }
-        }
-        updateDisplay();
-    }
-
-    /**
+      /**
      * adelanta el reloj un min
      */
 
     public void timeTick()
     {
+        //cambio de minuto
         minute.increment();
         
+        //cambio de hora
         if (minute.getValue() == 0)
         {
             hour.increment();
             
+            //cambio de dia
             if (hour.getValue() == 0)
             {
-                tickDate();
+                day.increment();
+                
+                //cambio de mes
+                if (day.getValue() == 0)
+                {   
+                    day.setValue(1);
+                    month.increment();
+                    
+                    //cambio de año
+                    if (month.getValue() == 0)
+                    {
+                        month.setValue(1);
+                        year.increment();
+                    }
+                }
             }
         }
         updateDisplay();
     }
-      
+
     /**
      * Devuelve String con la hora y fecha
      */
@@ -157,13 +152,12 @@ public class ClockDisplay
         String newMinute = minute.getDisplayValue();
         String newHour; 
         String amPm;
-        
-            
+
         // formato si es por la mañana
         if(valueHour < 12)
         {   
             amPm = "am";
-           
+
             if (valueHour == 0)
             {
                 newHour = "12";
@@ -174,12 +168,12 @@ public class ClockDisplay
             }
 
         }
-        
+
         //formato si es por la tarde
         else
         {
             amPm = "pm";
-            
+
             if (valueHour == 12)
             {
                 newHour = "12";
@@ -192,9 +186,9 @@ public class ClockDisplay
             {
                 newHour = "" + (valueHour - 12);
             }
-        
+
         }
-        
+
         // hh:mm am DD/MM/YY
         courentValue = newHour + ":" + newMinute + " " + amPm + " " + day.getDisplayValue() + "/" + month.getDisplayValue() + "/" + year.getDisplayValue();;
     }
